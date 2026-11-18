@@ -1,0 +1,58 @@
+/* Дополнения к стилям Tilda для формы без бэкенда. */
+/* Стандартный зелёный блок «Спасибо» Tilda заменяем нейтральным:
+   на нём зелёная кнопка WhatsApp иначе сливается с фоном. */
+.t-form__successbox {
+  padding: 0 !important;
+  color: #343434 !important;
+  background: transparent !important;
+  text-align: center;
+}
+.t-input-error {
+  display: none;
+  margin-top: 6px;
+  color: #d93025;
+  font-size: 14px;
+  line-height: 1.35;
+}
+.t-input-group_error .t-input {
+  border-color: #d93025 !important;
+}
+.site-form-success {
+  padding: 8px 0 4px;
+  text-align: center;
+}
+.site-form-success__title {
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.site-form-success p {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.site-form-success__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.site-form-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: #fff !important;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  background: #25d366;
+}
+.site-form-btn_tg {
+  background: #2aabee;
+}
+.site-form-success__hint {
+  margin: 0;
+  font-size: 13px;
+  opacity: .7;
+}
