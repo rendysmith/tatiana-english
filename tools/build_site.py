@@ -93,7 +93,8 @@ def local_path_for(url: str) -> str:
         return "assets/css/google-fonts.css"
 
     if host == "fonts.gstatic.com":
-        ext = pathlib.PurePosixPath(path).suffix or ".bin"
+        # Google Fonts иногда отдаёт ссылки без расширения — это всё равно woff2.
+        ext = pathlib.PurePosixPath(path).suffix or ".woff2"
         return "assets/fonts/" + hashlib.sha1(url.encode()).hexdigest()[:16] + ext
 
     name = posixpath.basename(path)
@@ -234,6 +235,34 @@ def page_link(url: str, page_dir: str) -> str:
     return "./" if rel == "." else rel.rstrip("/") + "/"
 
 
+def tweak_reviews_slider(html: str) -> str:
+    """Отзывы: 3 карточки в ряд на десктопе (2 на планшете, 1 на телефоне).
+
+    Tilda берёт количество карточек из data-slider-items-in-row, а высоту
+    подгоняет под активную карточку — при трёх в ряд это обрезало бы текст,
+    поэтому корректную высоту отключаем.
+    """
+    pattern = re.compile(
+        r"<div[^>]*id=\"carousel_856649241\"[^>]*>", re.S
+    )
+
+    def repl(match):
+        tag = match.group(0)
+        tag = tag.replace(
+            'data-slider-correct-height="true"',
+            'data-slider-correct-height="false"',
+        )
+        if "data-slider-items-in-row" not in tag:
+            tag = tag.replace(
+                "data-slider-transition=",
+                'data-slider-items-in-row="3" data-slider-transition=',
+                1,
+            )
+        return tag
+
+    return pattern.sub(repl, html, count=1)
+
+
 def rewrite_html(html: str, out_path: str, mapping: dict) -> str:
     page_dir = posixpath.dirname(out_path) or "."
 
@@ -262,7 +291,7 @@ def rewrite_html(html: str, out_path: str, mapping: dict) -> str:
 
     # lang у <html>.
     html = html.replace("<html>", '<html lang="ru">', 1)
-    return html
+    return tweak_reviews_slider(html)
 
 
 def add_site_assets(html: str, out_path: str) -> str:
@@ -475,6 +504,116 @@ CUSTOM_CSS = """/* Дополнения к стилям Tilda для формы 
   margin: 0;
   font-size: 13px;
   opacity: .7;
+}
+
+/* --- Слайдер отзывов: 3 карточки в ряд и заметные стрелки --- */
+#rec856649241 .t-slds__main {
+  box-sizing: border-box;
+  padding-left: 84px;
+  padding-right: 84px;
+}
+#rec856649241 .t-slds__items-wrapper {
+  display: flex !important;
+  align-items: stretch;
+}
+#rec856649241 .t-slds__item {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+#rec856649241 .t-slds__item > .t-width {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+#rec856649241 .t-slds__item .t-slds__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 28px 26px 30px !important;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(52, 52, 52, .07);
+}
+#rec856649241 .t726__text {
+  flex: 1 1 auto;
+  margin-bottom: 22px !important;
+  font-size: 16px;
+  line-height: 1.55;
+}
+#rec856649241 .t726__bgimg {
+  margin-top: auto;
+}
+#rec856649241 .t726__title {
+  margin-top: 12px;
+}
+
+#rec856649241 .t-slds__arrow-withbg {
+  width: 54px !important;
+  height: 54px !important;
+  background-color: #343434 !important;
+  box-shadow: 0 6px 18px rgba(52, 52, 52, .22);
+}
+#rec856649241 .t-slds__arrow-withbg:hover,
+#rec856649241 .t-slds__arrow-withbg:focus-visible {
+  background-color: #64deff !important;
+}
+#rec856649241 .t-slds__arrow-withbg svg polyline {
+  stroke: #ffffff;
+  stroke-width: 1.8;
+}
+#rec856649241 .t-slds__arrow-withbg:hover svg polyline,
+#rec856649241 .t-slds__arrow-withbg:focus-visible svg polyline {
+  stroke: #343434;
+}
+#rec856649241 .t-slds__arrow_body {
+  width: 14px !important;
+}
+#rec856649241 .t-slds__arrow-left {
+  left: 0;
+}
+#rec856649241 .t-slds__arrow-right {
+  right: 0;
+}
+
+@media (max-width: 960px) {
+  #rec856649241 .t-slds__main {
+    max-width: 960px;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  #rec856649241 .t-slds__arrow-withbg {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  #rec856649241 .t-slds__item .t-slds__wrapper {
+    padding: 24px 22px 26px !important;
+  }
+  #rec856649241 .t726__text {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  #rec856649241 .t-slds__main {
+    padding-left: 46px;
+    padding-right: 46px;
+  }
+  #rec856649241 .t-slds__arrow-withbg {
+    width: 42px !important;
+    height: 42px !important;
+  }
+  #rec856649241 .t-slds__arrow-left {
+    left: 0;
+  }
+  #rec856649241 .t-slds__arrow-right {
+    right: 0;
+  }
+  #rec856649241 .t-slds__item {
+    padding: 0 6px;
+  }
 }
 """
 
