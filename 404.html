@@ -1,79 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Страница не найдена — Татьяна Красноперова</title>
-  <script>
-    /* GitHub Pages отдаёт этот файл для любого несуществующего пути,
-       поэтому корень сайта вычисляем по адресу самого 404.html. */
-    (function () {
-      var src = document.currentScript && document.currentScript.src;
-      if (!src) return;
-      var base = document.createElement('base');
-      base.href = src.replace(/404\.html.*$/, '');
-      document.head.appendChild(base);
-    })();
-  </script>
-  <link rel="stylesheet" href="assets/css/google-fonts.css">
-  <style>
-    html, body { margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      box-sizing: border-box;
-      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-      color: #343434;
-      background: linear-gradient(135deg, #eef7f3 0%, #fafaf7 55%, #fff6d9 100%);
-    }
-    .card {
-      max-width: 560px;
-      width: 100%;
-      padding: 48px 40px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.75);
-      border-radius: 16px;
-      box-shadow: 0 18px 50px rgba(52, 52, 52, 0.08);
-      backdrop-filter: blur(6px);
-    }
-    .code { margin: 0 0 8px; font-size: 64px; font-weight: 700; line-height: 1; opacity: .15; }
-    h1 { margin: 0 0 16px; font-size: 28px; line-height: 1.3; }
-    p { margin: 0 0 28px; font-size: 16px; line-height: 1.6; opacity: .8; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-    a.btn {
-      display: inline-block;
-      padding: 13px 24px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      color: #fff;
-      background: #343434;
-      transition: background-color .2s ease-in-out;
-    }
-    a.btn:hover { background: #64deff; color: #343434; }
-    a.link { display: inline-block; padding: 13px 4px; color: #343434; font-size: 15px; }
-    @media (max-width: 480px) {
-      .card { padding: 36px 22px; }
-      .code { font-size: 52px; }
-      h1 { font-size: 23px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Страница не найдена — Татьяна Красноперова</title>
+<meta name="robots" content="noindex">
+<script>
+(function(){var s=document.currentScript&&document.currentScript.src;if(!s)return;var b=document.createElement('base');b.href=s.replace(/404\.html.*$/,'');document.head.appendChild(b);})();
+</script>
+<link rel="icon" href="assets/img/favicon.ico">
+<link rel="stylesheet" href="assets/css/google-fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <main class="card">
-    <p class="code">404</p>
-    <h1>Такой страницы нет</h1>
-    <p>Возможно, ссылка устарела или в адресе есть опечатка.<br>
-      Вернитесь на главную — там всё про занятия английским.</p>
-    <div class="actions">
-      <a class="btn" href="./">На главную</a>
-      <a class="link" href="consent/">Согласие на обработку данных</a>
-      <a class="link" href="policy/">Политика конфиденциальности</a>
-    </div>
-  </main>
+<header class="header is-scrolled">
+  <div class="wrap header__in">
+    <a class="logo" href="./">Татьяна Красноперова</a>
+    <div class="header__cta" style="margin-left:auto"><a class="btn btn--dark btn--sm" href="./#contact">Написать</a></div>
+  </div>
+</header>
+<main class="nf"><div><div class="nf__code">404</div><h1>Такой страницы нет</h1><p>Возможно, ссылка устарела или в адресе есть опечатка.</p><a class="btn btn--dark" href="./">На главную</a></div></main>
+<footer class="footer">
+  <div class="wrap footer__in">
+    <span>© Татьяна Красноперова</span>
+    <span class="footer__links"><a href="oferta/">Договор-оферта</a><a href="policy/">Политика конфиденциальности</a><a href="consent/">Согласие на обработку данных</a></span>
+    <span>Сайт создан компанией ZR · <a href="https://zeroroutine.ai" target="_blank" rel="noopener">zeroroutine.ai</a></span>
+  </div>
+</footer>
 </body>
 </html>
