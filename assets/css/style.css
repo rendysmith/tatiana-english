@@ -47,9 +47,9 @@ p{margin:0}
 .btn--ghost:hover{background:var(--ink);color:#fff}
 .btn--light{border-color:rgba(255,255,255,.55);color:#fff}
 .btn--light:hover{background:#fff;color:var(--ink)}
-.btn--wa{background:#3f7d5e;color:#fff}
+.btn--wa{background:#3f7d5e;color:#fff;border-color:#a8d3bb}
 .btn--wa:hover{background:#4a8a6a}
-.btn--tg{background:#357aa6;color:#fff}
+.btn--tg{background:#357aa6;color:#fff;border-color:#a6cde6}
 .btn--tg:hover{background:#4088b6}
 .btn--vk{background:#3d5fa9;color:#fff;border-color:#a9bdea}
 .btn--vk:hover{background:#4b6dba}
