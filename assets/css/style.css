@@ -51,6 +51,8 @@ p{margin:0}
 .btn--wa:hover{background:#4a8a6a}
 .btn--tg{background:#3f6f9f;color:#fff}
 .btn--tg:hover{background:#4b7cae}
+.btn--vk{background:#5a6fa6;color:#fff}
+.btn--vk:hover{background:#6679b0}
 .btn--sm{padding:11px 20px;font-size:15px}
 .btn:active{transform:translateY(1px)}
 
